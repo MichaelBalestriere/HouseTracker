@@ -1,35 +1,21 @@
 import requests
+import csv
 
-# API endpoint
 url = "https://financialmodelingprep.com/stable/insider-trading/latest"
-
-# Your API key
 api_key = "1VmWVK5JNFhCrEekrP5FX4hj2EuNFdvG"
 
-# Ask the user to enter a date in the format YYYY-MM-DD
 date = input("Enter the date (YYYY-MM-DD): ")
-
-# Make the GET request with the user-provided date
 response = requests.get(f"{url}?apikey={api_key}&date={date}")
 
-# Check if the request was successful
 if response.status_code == 200:
-    # Parse the response data
     data = response.json()
-    
-    # Define the transaction types to filter (Purchase and Sale)
-    important_transaction_types = ['P-Purchase', 'S-Sale']  # Purchases and Sales
-    
-    # Filter and display the relevant facts for each trade
+    important_transaction_types = ['P-Purchase', 'S-Sale']
+    exportable_trades = []  # Store trades to potentially export
+
     for trade in data:
-        # Check if the transaction date matches the user-provided date
         if trade['transactionDate'] == date:
-            # Calculate total cost
             total_cost = trade['securitiesTransacted'] * trade['price']
-            
-            # Check if the transaction type is either 'P' (Purchase) or 'S' (Sale)
             if trade['transactionType'] in important_transaction_types:
-                # Format the total cost with commas
                 formatted_total_cost = f"{total_cost:,.2f}"
                 
                 print("\n-------------------------------")
@@ -41,5 +27,27 @@ if response.status_code == 200:
                 print(f"Total Cost: ${formatted_total_cost}")
                 print(f"Relation to Trade: {trade['typeOfOwner']}")
                 
+                exportable_trades.append({
+                    'Insider Name': trade['reportingName'],
+                    'Transaction Date': trade['transactionDate'],
+                    'Transaction Type': trade['transactionType'],
+                    'Shares Transacted': trade['securitiesTransacted'],
+                    'Price': trade['price'],
+                    'Total Cost': total_cost,
+                    'Relation to Trade': trade['typeOfOwner']
+                })
+
+    # Ask if the user wants to export the filtered trades to a CSV file
+    if exportable_trades:
+        should_export = input("\nWould you like to export these trades to a CSV file? (yes/no): ").lower()
+        if should_export == 'yes':
+            filename = r"C:\Users\Mabal\OneDrive\Documents\MyVsCode\Programming II\FinalProject\insider_trades_" + date + ".csv"
+            with open(filename, mode='w', newline='') as file:
+                writer = csv.DictWriter(file, fieldnames=exportable_trades[0].keys())
+                writer.writeheader()
+                writer.writerows(exportable_trades)
+            print(f"\nExported {len(exportable_trades)} trades to {filename}")
+    else:
+        print("No matching trades to export.")
 else:
     print(f"Error: {response.status_code}")
