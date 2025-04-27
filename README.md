@@ -1,5 +1,3 @@
 # Insider Trade Analyzer
-Project Overview
-This project helps retrieve and analyze the top insider trades made on a specific day using data from the Financial Modeling Prep API. It identifies significant trades based on transaction size, insider role, and other factors. 
-
+This project is a simple and modern Python app that allows users to view insider trading data for a specific date using the Financial Modeling Prep API. The app uses a graphical interface built with Tkinter, making it easy for users to enter a date, view important insider transactions (purchases and sales), and optionally export the results to a CSV file. It provides clear and organized information such as the insider's name, shares transacted, price, total cost, and their relation to the company. This project combines API integration, GUI development, and file exporting.
 https://site.financialmodelingprep.com/developer/docs/stable#latest-insider-trade
