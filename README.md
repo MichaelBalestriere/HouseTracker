@@ -12,7 +12,7 @@
 
 ---
 
-## 1.Introduction and Overview
+## 1. Introduction and Overview
 
 Insider Trading Viewer is a GUI-based Python application that allows users to retrieve and view recent insider trading transactions using the Financial Modeling Prep API. It enables users to input a specific date, fetch relevant insider trading data, view the details in a readable format, and export important transactions to a CSV file.
 
