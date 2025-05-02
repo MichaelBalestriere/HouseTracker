@@ -1,14 +1,14 @@
 # Insider Trading Viewer
 
 ## Table of Contents
-1. [Introduction and Overview](#introduction-and-overview)
-2. [System Architecture](#system-architecture)
-3. [Data Design](#data-design)
-4. [Interface Design](#interface-design)
-5. [Component Design](#component-design)
-6. [User Interface Design](#user-interface-design)
-7. [Assumptions and Dependencies](#assumptions-and-dependencies)
-8. [Glossary of Terms](#glossary-of-terms)
+1. [Introduction and Overview](#1-introduction-and-overview)
+2. [System Architecture](#2-system-architecture)
+3. [Data Design](#3-data-design)
+4. [Interface Design](#4-interface-design)
+5. [Component Design](#5-component-design)
+6. [User Interface Design](#6-user-interface-design)
+7. [Assumptions and Dependencies](#7-assumptions-and-dependencies)
+8. [Glossary of Terms](#8-glossary-of-terms)
 
 ---
 
@@ -131,5 +131,3 @@ UI uses consistent font and color schemes for readability and user experience.
 | **S-Sale**            | A type of insider trading transaction where an insider sells shares of the company. |
 
 ---
-
-
